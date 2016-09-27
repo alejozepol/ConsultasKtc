@@ -1,0 +1,25 @@
+	SELECT	 A.COD_EMPL as 'Identificación',
+			( ltrim(rtrim((B.APE_EMPL)) +' '+ltrim(rtrim((B.NOM_EMPL))))) as 'Apellidos y Nombres' ,
+			d.nom_carg as 'Nombre Cargo',
+			CONVERT(date,A.FEC_INGR,110) AS 'Fecha Inicio',
+			c.nom_ccos as 'Centro de Costo',
+			e.nom_tnom as 'ciudad',
+			(CASE a.tip_cont when 'I' THEN 'Indefinido' 
+			else CASE a.tip_cont when 'F' THEN 'Fijo' 
+			else CASE a.tip_cont when 'S' THEN 'Sena' end end end) as 'Tipo de Contrato',
+			CAST ((A.sue_basi) AS money) as 'Sueldo Basico',
+			a.cod_frep as 'Identificación Jefe',
+			( ltrim(rtrim((f.APE_EMPL)) +' '+ltrim(rtrim((f.NOM_EMPL))))) as 'Jefe Apellidos y Nombres',
+			g.nom_ccos as 'Centro de Costo'
+	FROM BI_EMPLE B
+	inner join nm_contr a on b.cod_empl=a.cod_empl
+	inner join gn_ccost c on c.cod_ccos=a.cod_ccos
+	inner join bi_cargo d on d.cod_carg=a.cod_carg
+	inner join nm_tnomi e on a.cod_tnom=e.cod_tnom
+	inner join bi_emple f on f.cod_empl=a.cod_frep
+	inner join gn_ccost g on g.cod_ccos=a.cod_ccos
+	where a.ind_acti='A'
+	GROUP BY A.COD_EMPL,B.NOM_EMPL,
+			 B.APE_EMPL,a.sue_basi,A.FEC_INGR,c.nom_ccos,e.nom_tnom,a.tip_cont,
+			 a.cod_frep,f.NOM_EMPL, f.APE_EMPL,g.nom_ccos,d.nom_carg
+	ORDER BY A.COD_EMPL

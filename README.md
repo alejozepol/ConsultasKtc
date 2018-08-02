@@ -1,8 +1,10 @@
 ﻿# ConsultasKCT
 
+
+
 SQL SERVER
 
-CasadoSinConyugue : Con este script puede consultar en sql server los empleados activos que en el maestro de empleados (KBiEmple) 
+<a href="https://github.com/alejozepol/ConsultasKtc/blob/master/SQL/CasadoSinConyugue.sql)"><H1>CasadoSinConyugue :</H1></a> Con este script puede consultar en sql server los empleados activos que en el maestro de empleados (KBiEmple) 
 se encuentra como casado o union libre y en el maestro de familiares (KBiFamil) no tiene registrado su conyugue.
 
 <table style="width:100%">

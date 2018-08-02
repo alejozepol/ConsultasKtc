@@ -7,18 +7,21 @@ se encuentra como casado o union libre y en el maestro de familiares (KBiFamil) 
 
 <table style="width:100%">
   <tr>
-    <th>Firstname</th>
-    <th>Lastname</th> 
-    <th>Age</th>
+    <th>Nombre Centro de Costo</th>
+    <th>Tipo</th> 
+    <th>Identificacion</th>
+    <th>Nombre Empleado</th>
+    <th>Apellido Empleado</th>
+    <th>Codigo Cargo</th>
+    <th>Nombre Cargo</th>
   </tr>
   <tr>
-    <td>Jill</td>
-    <td>Smith</td> 
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td> 
-    <td>94</td>
+    <td>Gestion Humana</td>
+    <td>Casado sin Conyugue registrados</td> 
+    <td>0</td>
+    <td>Nombres</td>
+    <td>Apellidos</td>
+    <td>123</td>
+    <td>Cargo</td>
   </tr>
 </table>

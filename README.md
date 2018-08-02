@@ -2,9 +2,7 @@
 
 <h2>SQL SERVER</h2>
 
-<a href="https://github.com/alejozepol/ConsultasKtc/blob/master/SQL/CasadoSinConyugue.sql">
-    <H3>CasadoSinConyugue :</H3>
-</a>
+<a href="https://github.com/alejozepol/ConsultasKtc/blob/master/SQL/CasadoSinConyugue.sql"><H3>CasadoSinConyugue :</H3></a>
 <span>Con este script puede generar un listado de los empleados activos que en el maestro de empleados (KBiEmple) 
     se encuentra como casado o union libre y en el maestro de familiares (KBiFamil) no tiene registrado su conyugue.</span>
 

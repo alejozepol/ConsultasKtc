@@ -1,5 +1,5 @@
-/*Con este script puede consultar en sql server los empleados que en el maestro de empleados (KBiEmple) 
-se encuentra como casado o union libre y en el maestro de familiares (KBiFamil) no tiene registrado su conyugue. */
+/*Con este script puede generar un listado de los empleados activos que en el maestro de empleados (KBiEmple) 
+    se encuentra como casado o union libre y en el maestro de familiares (KBiFamil) no tiene registrado su conyugue. */
 
 
 declare @ncod_empr smallint;

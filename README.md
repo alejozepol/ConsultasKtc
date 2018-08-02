@@ -2,10 +2,10 @@
 
 <h2>SQL SERVER</h2>
 
-<a href="https://github.com/alejozepol/ConsultasKtc/blob/master/SQL/CasadoSinConyugue.sql" target="_blank">
+<a href="https://github.com/alejozepol/ConsultasKtc/blob/master/SQL/CasadoSinConyugue.sql">
     <H3>CasadoSinConyugue :</H3>
 </a>
-<span>Con este script puede consultar en sql server los empleados activos que en el maestro de empleados (KBiEmple) 
+<span>Con este script puede generar un listado de los empleados activos que en el maestro de empleados (KBiEmple) 
     se encuentra como casado o union libre y en el maestro de familiares (KBiFamil) no tiene registrado su conyugue.</span>
 
 <table style="width:100%">
@@ -30,11 +30,11 @@
 </table>
 
 
-<a href="https://github.com/alejozepol/ConsultasKtc/blob/master/SQL/ConsultaFoto.sql" target="_blank">
+<a href="https://github.com/alejozepol/ConsultasKtc/blob/master/SQL/ConsultaFoto.sql">
     <H3>ConsultaFoto :</H3>
 </a>
-<span>Con este script puede consultar en sql server los empleados activos que en el maestro de empleados (KBiEmple) 
-y no tiene foto.</span>
+<span>Con este script puede generar un listado de los empleados activos que en el maestro de empleados (KBiEmple) 
+no tiene foto.</span>
 
 <table style="width:100%">
   <tr>
@@ -56,3 +56,4 @@ y no tiene foto.</span>
     <td>Cargo</td>
   </tr>
 </table>
+

@@ -1,5 +1,5 @@
-/*Con este script puede consultar en sql server los empleados activos que en el maestro de empleados (KBiEmple) 
-y no tiene foto */
+/*Con este script puede generar un listado de los empleados activos que en el maestro de empleados (KBiEmple) 
+no tiene foto*/
 
 
 declare @ncod_empr smallint;

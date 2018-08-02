@@ -184,7 +184,7 @@ no tiene foto.</span>
 <a href="https://github.com/alejozepol/ConsultasKtc/blob/master/SQL/FuncionValorValorFechaActualAcumuladosConcepto.sql"><H4>FuncionValorValorFechaActualAcumuladosConcepto :</H4></a>
 <span>pendiente por probar y documentar</span>
 
-#html
+# html
 <!DOCTYPE html>
 <html lang="es">
 

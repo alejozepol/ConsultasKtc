@@ -1,3 +1,11 @@
+/*Con este script puede generar un listado de los empleados activos que no poseen 
+	referencias laborales en el programa hoajde  vida externa (KBiHvExt)*/
+
+
+declare @ncod_empr smallint;
+/*asignar el codigo de la empresa que quiere consultar*/
+select @ncod_empr =409 --codigo empresa
+
 SELECT DISTINCT C.cod_ccos as 'Codigo Centro de Costo',
 				T.nom_ccos as 'Nombre Centro de Costo',
 				'Referencias laborales incompletas' as Tipo,
@@ -13,9 +21,9 @@ INNER JOIN BI_HVEXT E
   ON (C.COD_EMPR = E.COD_EMPR) AND (C.COD_EMPL = E.COD_EMPL)
    INNER JOIN gn_ccost T ON (C.cod_ccos=T.cod_ccos)
 INNER JOIN bi_cargo f ON (C.COD_CARG=f.COD_CARG)
-WHERE (C.COD_EMPR = 1)
-  AND (((E.FEC_INGR IS NULL) OR (E.FEC_INGR = '1899-12-30' ))
-    OR ((E.FEC_RETI IS NULL) OR (E.FEC_RETI = '1899-12-30'))
+WHERE (C.COD_EMPR = @ncod_empr)
+  AND (((E.FEC_INGR IS NULL) OR (E.FEC_INGR = '18991230' ))-- tener en el formato de fecha del servidor
+    OR ((E.FEC_RETI IS NULL) OR (E.FEC_RETI = '18991230'))-- tener en cuenta el formato de fecha del servidor
     OR ((E.COD_EMPR IS NULL) OR (E.COD_EMPR = 0))
     OR ((E.TIP_EMPR IS NULL) OR (E.TIP_EMPR = ''))
     OR ((E.DIR_EMPR IS NULL) OR (E.DIR_EMPR = ''))

@@ -1,3 +1,10 @@
+	/*Con este script puede generar un listado de los empleados activos con datos basicos*/
+
+
+declare @ncod_empr smallint;
+/*asignar el codigo de la empresa que quiere consultar*/
+select @ncod_empr =409 --codigo empresa
+
 SELECT DISTINCT	C.cod_ccos as 'Codigo Centro de Costo',
 				T.nom_ccos as 'Nombre Centro de Costo',
 				B.COD_EMPL as 'Identificacion', 
@@ -11,7 +18,7 @@ INNER JOIN BI_EMPLE B
   ON (C.COD_EMPR = B.COD_EMPR) AND (C.COD_EMPL = B.COD_EMPL)
   INNER JOIN gn_ccost T ON (C.cod_ccos=T.cod_ccos)
 INNER JOIN bi_cargo E ON (C.COD_CARG=E.COD_CARG)
-WHERE (C.COD_EMPR = 1)
+WHERE (C.COD_EMPR = @ncod_empr)
   AND (C.IND_ACTI <> 'I')
   AND (B.COD_EMPL <> 0)
   AND (((B.NOM_EMPL IS NULL) OR (B.NOM_EMPL = ''))

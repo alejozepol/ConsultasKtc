@@ -30,9 +30,7 @@
 </table>
 
 
-<a href="https://github.com/alejozepol/ConsultasKtc/blob/master/SQL/ConsultaFoto.sql">
-    <H3>ConsultaFoto :</H3>
-</a>
+<a href="https://github.com/alejozepol/ConsultasKtc/blob/master/SQL/ConsultaFoto.sql"><H3>ConsultaFoto :</H3></a>
 <span>Con este script puede generar un listado de los empleados activos que en el maestro de empleados (KBiEmple) 
 no tiene foto.</span>
 

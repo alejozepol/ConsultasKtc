@@ -95,7 +95,6 @@ no tiene foto.</span>
     <th>Apellido Empleado</th>
     <th>Codigo Cargo</th>
     <th>Nombre Cargo</th>
-    <th>Fecha Ingreso</th>
   </tr>
   <tr>
     <td>345</td> 
@@ -106,6 +105,42 @@ no tiene foto.</span>
     <td>Apellidos</td>
     <td>123</td>
     <td>Cargo</td>
+  </tr>
+</table>
+
+<h3>Planta</h3>
+
+<a href="https://github.com/alejozepol/ConsultasKtc/blob/master/SQL/PlataSobreContratos.sql"><H4>PlataSobreContratos :</H4></a>
+<span>Con este script puede generar un listado de los empleados activos generando una planta
+	basada en contratos (KNmContr)</span>
+
+<table style="width:100%">
+  <tr>
+    <th>Codigo Empresa</th>
+    <th>identificacion</th>
+    <th>Apellidos y Nombre</th>
+    <th>Nombre Cargo</th>
+    <th>Fecha de Inicio</th>
+    <th>Nombre de centro de costo</th>     
+    <th>Clase de nomina</th>     
+    <th>Tipo contrato</th>
+    <th>Sueldo Basico/th>
+    <th>dentificación jefe</th>
+    <th>Jefe Apellidos y Nombres</th>
+    <th>Jefe Centro de costos</th>
+  </tr>
+  <tr>
+    <td>1</td> 
+    <td>0</td>
+    <td>Apellidos Nombres</td>
+    <td>Cargo</td>
     <td>01/01/2015</td>
+    <td>Gestion Humana</td>
+    <td>Administrativo</td>
+    <td>Fijo</td>
+    <td>1.000.000</td>
+    <td>1</td>
+    <td>Apellidos y nombre Jefe</td>
+    <td>Presidencia</td>
   </tr>
 </table>

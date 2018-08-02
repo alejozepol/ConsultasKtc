@@ -1,3 +1,11 @@
+/*Con este script puede consultar en sql server los empleados activos que en el maestro de empleados (KBiEmple) 
+y no tiene foto */
+
+
+declare @ncod_empr smallint;
+/*asignar el codigo de la empresa que quiere consultar*/
+select @ncod_empr =409 --codigo empresa
+
 SELECT DISTINCT B.COD_EMPL as 'Identificacion', 
 				B.NOM_EMPL as 'Nombre Empleado',
 				B.APE_EMPL as 'Apellido Empleado',
@@ -9,7 +17,7 @@ FROM NM_CONTR C
 INNER JOIN BI_EMPLE B ON (C.COD_EMPR = B.COD_EMPR) AND (C.COD_EMPL = B.COD_EMPL)
 INNER JOIN gn_ccost T ON (C.cod_ccos=T.cod_ccos)
 INNER JOIN bi_cargo E ON (C.COD_CARG=E.COD_CARG)
-WHERE (C.COD_EMPR = 1)
+WHERE (C.COD_EMPR = @ncod_empr)
   AND (C.IND_ACTI <> 'I')
   AND (B.COD_EMPL <> 0)
   AND NOT (B.COD_EMPL IN (

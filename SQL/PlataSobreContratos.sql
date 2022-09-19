@@ -36,3 +36,44 @@ SELECT	a.cod_empr as 'Codigo Empresa' ,
 			 B.APE_EMPL,a.sue_basi,A.FEC_INGR,c.nom_ccos,e.nom_tnom,i.nom_gpro,a.tip_cont,
 			 a.cod_frep,f.NOM_EMPL, f.APE_EMPL,g.nom_ccos,d.nom_carg
 	ORDER BY A.COD_EMPL
+	
+	
+	
+
+	/*Con este script puede generar un listado de los empleados activos con datos basicos*/
+
+
+declare @ncod_empr smallint;
+/*asignar el codigo de la empresa que quiere consultar*/
+select @ncod_empr =627 --codigo empresa
+
+SELECT DISTINCT
+				B.COD_EMPL as 'Identificacion', 
+				B.cod_inte as 'Codigo',
+				B.NOM_EMPL as 'Nombre Empleado',
+				PARSENAME(REPLACE(B.APE_EMPL,' ','.'),1) as 'Primer Apellido',
+				PARSENAME(REPLACE(B.APE_EMPL,' ','.'),2) as 'Segundo Apellido',
+				B.tel_movi as 'Celular',
+				B.tel_resi as 'Telefono Fijo',
+				B.dir_resi as 'Direccion',
+				B.bar_resi as 'Barrio',
+				loc.nom_mpio as 'Localidad',
+				convert(date,b.fec_naci) AS 'Fecha de Nacimiento',
+				convert(date,C.fec_ingr) AS 'Fecha de Ingreso',
+				e.nom_carg as 'Cargo',
+				nomi.nom_tnom AS 'Clasifiacion'
+FROM NM_CONTR C
+INNER JOIN BI_EMPLE B
+  ON (C.COD_EMPR = B.COD_EMPR) AND (C.COD_EMPL = B.COD_EMPL) and c.cod_empr=b.cod_empr
+INNER JOIN bi_cargo E ON (C.COD_CARG=E.COD_CARG)  and e.cod_empr=b.cod_empr
+inner join nm_tnomi nomi on nomi.cod_empr=c.cod_empr and nomi.cod_tnom=c.cod_tnom
+left join gn_divip loc 
+	on loc.cod_pais=b.pai_resi 
+	and loc.cod_mpio=b.mpi_resi 
+	and loc.cod_dpto=b.dto_resi
+	and loc.COD_LOCA=b.loc_resi
+WHERE (C.COD_EMPR = @ncod_empr)
+  AND (C.IND_ACTI = 'A')
+  AND (B.COD_EMPL <> 0)
+ORDER BY  B.NOM_EMPL
+

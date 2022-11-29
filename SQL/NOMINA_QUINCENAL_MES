@@ -1,0 +1,72 @@
+DECLARE
+   @COD_EMPR Smallint,             --- C¢DIGO EMPRESA
+   @COD_EMPL Decimal(13,0),        --- C¢DIGO DEL EMPLEADO
+   @NRO_CONT Char(12),             --- N£MERO DE CONTRATO
+   @FEC_INIC Datetime,             --- FECHA DE INICIO
+   @FEC_FINA Datetime,             --- FECHA DE FINALIZACIÓN
+   @TIP_NOMI Char(1),              --- TIPO DE NÓMINA -- D - A - N - E - C - P - V
+   @cod_conc Char(4)               --- CONCEPTO
+   ;
+
+select 
+   @COD_EMPR = 627,
+   @COD_EMPL = 1030552386,
+   @NRO_CONT = 1,
+   @FEC_INIC = '20221101',
+   @FEC_FINA = '20221130',
+   @TIP_NOMI = 'D'
+   ;
+
+SELECT          B.COD_EMPL, 
+				B.NOM_EMPL,
+				B.APE_EMPL,
+				B.cod_inte,
+				CO.cod_conc,
+				CO.nom_conc,
+				(CASE CO.TIP_CONC when 'I' THEN 'INGRESO' ELSE 'EGRESO' end) as TIP_CONC, 
+		        CAST (sum(ISNULL(PR.can_acum,0) + ISNULL(ac.can_acum,0)) as int) as can_acum,
+				CAST (sum(ISNULL(PR.VAL_ACUM,0) + ISNULL(ac.VAL_ACUM,0)) as int) as VAL_ACUM,
+				(CASE CO.TIP_CONC when 'I' 
+					THEN (CAST (sum(ISNULL(PR.VAL_ACUM,0) + ISNULL(ac.VAL_ACUM,0)) as int)) 
+					ELSE (CAST (sum(ISNULL(PR.VAL_ACUM,0) + ISNULL(ac.VAL_ACUM,0)) as int) * -1 ) END) as VAL_REAL
+FROM NM_CONTR C
+INNER JOIN BI_EMPLE B ON (C.COD_EMPR = B.COD_EMPR) 
+	AND (C.COD_EMPL = B.COD_EMPL)
+inner JOIN nm_conce co on co.cod_empr = c.cod_empr 
+	AND co.cod_conc IN (SELECT cod_conc 
+	FROM nm_preno _PR 
+	WHERE _pr.cod_empr=c.cod_empr 
+	AND _PR.nro_cont=C.nro_cont
+	and _PR.cod_empl=c.cod_empl
+	AND CO.cod_conc = _PR.cod_conc
+	AND _PR.FEC_ACUM BETWEEN @FEC_INIC AND @FEC_FINA
+	UNION
+	SELECT cod_conc 
+	FROM nm_acumu _AC 
+	WHERE _AC.cod_empr=c.cod_empr 
+	AND _AC.nro_cont=C.nro_cont
+	and _AC.cod_empl=c.cod_empl
+	AND CO.cod_conc = _AC.cod_conc
+	AND _AC.FEC_ACUM BETWEEN @FEC_INIC AND @FEC_FINA
+	)
+FULL OUTER JOIN nm_preno PR 
+	ON pr.cod_empl=c.cod_empl 
+	and pr.cod_empr=c.cod_empr 
+	AND PR.nro_cont=C.nro_cont
+	AND CO.cod_conc = PR.cod_conc
+	AND PR.FEC_ACUM BETWEEN @FEC_INIC AND @FEC_FINA
+FULL OUTER JOIN nm_acumu ac
+	on ac.cod_empl=c.cod_empl 
+	and ac.cod_empr=c.cod_empr 
+	AND AC.nro_cont=C.nro_cont
+    AND CO.cod_conc = AC.cod_conc
+	and AC.FEC_ACUM BETWEEN @FEC_INIC AND @FEC_FINA
+
+WHERE 
+  (C.COD_EMPR = @cod_empr)
+  AND (C.IND_ACTI <> 'I')
+  AND (B.COD_EMPL <> 0)
+--  AND C.cod_empl = @COD_EMPL
+ -- AND C.nro_cont = @NRO_CONT
+GROUP BY B.COD_EMPR, B.COD_EMPL,B.NOM_EMPL, B.APE_EMPL, B.cod_inte, CO.COD_CONC, CO.NOM_CONC, CO.TIP_CONC
+ORDER BY b.cod_empl, co.cod_conc

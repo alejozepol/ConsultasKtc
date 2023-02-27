@@ -2,13 +2,18 @@ DECLARE @COD_EMPL DECIMAL(13,0);
 DECLARE @COD_EMPL_NEW DECIMAL(13,0);
 
 
-SET @COD_EMPL = 1001270325
-SET @COD_EMPL_NEW = 1001270825
+SET @COD_EMPL = 88634243
+SET @COD_EMPL_NEW = 5246538
 
 
 	INSERT INTO BI_EMPLE
 	SELECT 
-		cod_empr,tip_docu,@COD_EMPL_NEW,dto_expe,pai_expe,mpi_expe,cod_inte,ape_empl,nom_empl,nac_iona,pai_extr,sex_empl,cla_lmil,num_lmil,dis_lmil,pai_naci,dto_naci,mpi_naci,fec_naci,pai_resi,dto_resi,mpi_resi,dir_resi,bar_resi,rut_resi,tel_resi,est_civi,per_carg,gra_educ,tit_obte,pro_titu,mat_prof,ano_serp,mes_serp,dia_serp,vin_serp,ano_spri,mes_spri,dia_spri,vin_spri,ano_trai,mes_trai,dia_trai,vin_trai,ult_enti,pub_real,tie_inha,obs_inha,obs_erva,act_usua,act_hora,act_esta,box_mail,eee_mail,tel_trab,tel_movi,tel_faxi,dir_part,rel_empl,rmt_imag,for_acad,ind_rest,obs_rest,fec_desr,fec_hasr,fec_reso,num_reso,PRO_ESPE,ADI_USUA,FEC_FALL,PAG_EXTE,IND_DISC,POR_DISC,NUM_CASA,LOC_EXPE,LOC_NACI,LOC_RESI,PRE_CONA,NUM_CONA,COD_ZONA,COD_VIAS,NOM_VIAS,SUS_PATR,FAM_EMPR,NOM_FAMI,NOM_RECO,FEC_EXPE,CAS_CONT,PER_FILE,RAD_OCIU,ANO_MIXT,MES_MIXT,DIA_MIXT,VIN_MIXT,CAB_FAMI,ADJ_GUID,FEC_GRAD,FEC_CONA,IND_TAEX 
+		cod_empr, tip_docu, @COD_EMPL_NEW, dto_expe, pai_expe, mpi_expe, cod_inte, ape_empl, nom_empl, nac_iona, pai_extr, sex_empl, cla_lmil, num_lmil, dis_lmil, pai_naci, dto_naci, mpi_naci, fec_naci, 
+                         pai_resi, dto_resi, mpi_resi, dir_resi, bar_resi, rut_resi, tel_resi, est_civi, per_carg, gra_educ, tit_obte, pro_titu, mat_prof, ano_serp, mes_serp, dia_serp, vin_serp, ano_spri, mes_spri, dia_spri, vin_spri, 
+                         ano_trai, mes_trai, dia_trai, vin_trai, ult_enti, pub_real, tie_inha, obs_inha, obs_erva, act_usua, act_hora, act_esta, box_mail, eee_mail, tel_trab, tel_movi, tel_faxi, dir_part, rel_empl, rmt_imag, for_acad, 
+                         ind_rest, obs_rest, fec_desr, fec_hasr, fec_reso, num_reso, PRO_ESPE, ADI_USUA, FEC_FALL, PAG_EXTE, IND_DISC, POR_DISC, NUM_CASA, LOC_EXPE, LOC_NACI, LOC_RESI, PRE_CONA, NUM_CONA, 
+                         COD_ZONA, COD_VIAS, NOM_VIAS, SUS_PATR, FAM_EMPR, NOM_FAMI, NOM_RECO, FEC_EXPE, CAS_CONT, PER_FILE, RAD_OCIU, ANO_MIXT, MES_MIXT, DIA_MIXT, VIN_MIXT, CAB_FAMI, ADJ_GUID, 
+                         FEC_GRAD, FEC_CONA, IND_TAEX, DAT_VERI, IND_VARM, EMP_ORVE, COD_EVER, OBS_VERI 
 		FROM bi_emple 
 		WHERE COD_EMPL=@COD_EMPL
 
@@ -29,6 +34,7 @@ SET @COD_EMPL_NEW = 1001270825
 	UPDATE nm_incap SET COD_EMPL=@COD_EMPL_NEW WHERE COD_EMPL=@COD_EMPL;
 	UPDATE nm_vacac SET COD_EMPL=@COD_EMPL_NEW WHERE COD_EMPL=@COD_EMPL;
 	UPDATE NM_DISRF SET COD_EMPL=@COD_EMPL_NEW WHERE COD_EMPL=@COD_EMPL;
+	UPDATE NM_NOVSS SET COD_EMPL=@COD_EMPL_NEW WHERE COD_EMPL=@COD_EMPL;
 	DELETE NM_DISRF WHERE COD_EMPL=@COD_EMPL;
 	UPDATE NM_AACUM SET COD_EMPL=@COD_EMPL_NEW WHERE COD_EMPL=@COD_EMPL;
 	UPDATE nm_ausen SET COD_EMPL=@COD_EMPL_NEW WHERE COD_EMPL=@COD_EMPL;
@@ -51,4 +57,3 @@ SET @COD_EMPL_NEW = 1001270825
 
 	DELETE NM_CONTR WHERE COD_EMPL=@COD_EMPL;
 	DELETE BI_EMPLE WHERE COD_EMPL=@COD_EMPL;
-
